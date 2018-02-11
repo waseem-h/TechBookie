@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="TechBookie.Views.PrivacyPolicyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechBookie.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+	  xmlns:Views="using:TechBookie.Views"
+	  xmlns:vm="using:TechBookie.ViewModels"
+	  xmlns:models="using:TechBookie.Models"
+	  xmlns:Behaviors="using:Template10.Behaviors"
+	  xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+	  xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+	  xmlns:controls="using:Template10.Controls">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+				<VisualState x:Name="VisualStateNarrow">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for narrow view  -->
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="VisualStateNormal">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for normal view  -->
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="VisualStateWide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for wide view  -->
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<!--  page header  -->
+		<controls:PageHeader Content="Privacy Policy TechBookie"
+							 Frame="{x:Bind Frame}"
+							 Background="{StaticResource CustomColorBrush}">
+		</controls:PageHeader>
+		<StackPanel Grid.Row="1"
+			  VerticalAlignment="Top"
+			  Padding="12,8,0,0">
+			<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+					   Text="Privacy Policy" />
+
+			<!-- Section 1 body -->
+			<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+					   Margin="0,0,0,25"
+					   FontSize="20"
+					   TextWrapping="Wrap">
+				<TextBlock.Text>
+					We don't collect any information about you. We don't collect information about usage, content or preferences of any downloaded content. We don't collect information when you interact with our applications, web pages, services and communications. Any credentials used to log in to a third party service are not stored in any way in any of products or services.
+				</TextBlock.Text>
+			</TextBlock>
+
+			<HyperlinkButton NavigateUri="http://myapppolicy.com/app/techbookie"
+							 Content="View Privacy Policy"
+							 HorizontalAlignment="Center" />
+		</StackPanel>
+	</Grid>
+</Page>

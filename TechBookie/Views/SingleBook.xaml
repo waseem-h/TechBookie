@@ -1,0 +1,129 @@
+﻿<Page x:Class="TechBookie.Views.SingleBook"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:TechBookie.Views"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d"
+	  xmlns:Views="using:TechBookie.Views"
+	  xmlns:vm="using:TechBookie.ViewModels"
+	  xmlns:models="using:TechBookie.Models"
+	  xmlns:Behaviors="using:Template10.Behaviors"
+	  xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+	  xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+	  xmlns:controls="using:Template10.Controls">
+
+	<Page.DataContext>
+		<vm:SingleBookViewModel x:Name="ViewModel" />
+	</Page.DataContext>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+				<VisualState x:Name="VisualStateNarrow">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="bookImage.Width"
+								Value="100" />
+						<Setter Target="downloadButton.Width"
+								Value="100" />
+						<Setter Target="favoritesButton.Width"
+								Value="100" />
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="VisualStateNormal">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for normal view  -->
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="VisualStateWide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for wide view  -->
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<!--  page header  -->
+		<controls:PageHeader Text="{x:Bind ViewModel.Book.BookName}"
+							 x:Name="pageHeader"
+							 Frame="{x:Bind Frame}"
+							 Background="{StaticResource CustomColorBrush}">
+		</controls:PageHeader>
+		<!--  page content  -->
+
+		<Grid Grid.Row="1"
+			  Padding="12,8,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="30*" />
+				<ColumnDefinition Width="70*" />
+			</Grid.ColumnDefinitions>
+			<Grid Grid.Column="0"
+				  Margin="0 50">
+				<StackPanel>
+					<Image Source="{x:Bind ViewModel.Book.BookImageLink}"
+						   VerticalAlignment="Top"
+						   MaxHeight="350"
+						   HorizontalAlignment="Center"
+						   x:Name="bookImage" />
+					<Button MinWidth="150"
+							Margin="0 10 0 10"
+							HorizontalAlignment="Center"
+							Click="{x:Bind ViewModel.DownloadBookButtonClick}"
+							x:Name="downloadButton">
+						<Button.Content>
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Symbol="Download"
+											Width="32"
+											Height="32" />
+								<TextBlock Text="Download"
+										   VerticalAlignment="Center" />
+							</StackPanel>
+						</Button.Content>
+					</Button>
+					<Button MinWidth="150"
+							x:Name="favoritesButton"
+							HorizontalAlignment="Center"
+							Click="{x:Bind ViewModel.FavoriteButtonClick}">
+						<Button.Content>
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Symbol="Favorite"
+											Width="32"
+											Height="32" />
+								<TextBlock Text="Add To Favorites"
+										   Loaded="{x:Bind ViewModel.FavoriteButtonLoaded}"
+										   VerticalAlignment="Center" />
+							</StackPanel>
+						</Button.Content>
+					</Button>
+				</StackPanel>
+			</Grid>
+			<Grid Grid.Column="1">
+				<ScrollViewer>
+					<StackPanel Margin="0 10">
+						<TextBlock Text="{x:Bind ViewModel.Book.BookName}"
+								   Style="{StaticResource HeaderTextBlockStyle}" />
+						<TextBlock Text="{x:Bind ViewModel.BookDescription, Mode=OneWay}"
+								   TextWrapping="WrapWholeWords"
+								   TextAlignment="Justify"
+								   Margin="10 0 50 0" />
+					</StackPanel>
+				</ScrollViewer>
+
+			</Grid>
+		</Grid>
+	</Grid>
+</Page>

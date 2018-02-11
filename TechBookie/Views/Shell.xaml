@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="TechBookie.Views.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechBookie.Views"
+	xmlns:Controls="using:Template10.Controls"
+	xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+	xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+	xmlns:Views="using:TechBookie.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Controls:ModalDialog x:Name="ModalContainer"
+							  CanBackButtonDismiss="False"
+							  DisableBackButtonWhenModal="True">
+			<Controls:ModalDialog.Content>
+				<Controls:HamburgerMenu x:Name="MyHamburgerMenu">
+					<Controls:HamburgerMenu.PrimaryButtons>
+						<Controls:HamburgerButtonInfo ClearHistory="True"
+													  PageType="Views:MainPage">
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Width="48"
+											Height="48"
+											Symbol="Home" />
+								<TextBlock Margin="12 0 0 0"
+										   VerticalAlignment="Center"
+										   Text="Home" />
+							</StackPanel>
+						</Controls:HamburgerButtonInfo>
+						<Controls:HamburgerButtonInfo PageType="Views:FavoritesPage">
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Width="48"
+											Height="48"
+											Symbol="Favorite" />
+								<TextBlock Margin="12 0 0 0"
+										   VerticalAlignment="Center"
+										   Text="Favorites" />
+							</StackPanel>
+						</Controls:HamburgerButtonInfo>
+						<Controls:HamburgerButtonInfo PageType="Views:AllBooksPage">
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Width="48"
+											Height="48"
+											Symbol="AllApps" />
+								<TextBlock Margin="12 0 0 0"
+										   VerticalAlignment="Center"
+										   Text="All Books" />
+							</StackPanel>
+						</Controls:HamburgerButtonInfo>
+					</Controls:HamburgerMenu.PrimaryButtons>
+					<Controls:HamburgerMenu.SecondaryButtons>
+						<Controls:HamburgerButtonInfo PageType="Views:PrivacyPolicyPage">
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Width="48"
+											Height="48"
+											Symbol="ProtectedDocument" />
+								<TextBlock Margin="12 0 0 0"
+										   VerticalAlignment="Center"
+										   Text="Privacy Policy" />
+							</StackPanel>
+						</Controls:HamburgerButtonInfo>
+						<Controls:HamburgerButtonInfo PageType="Views:AboutPage">
+							<StackPanel Orientation="Horizontal">
+								<SymbolIcon Width="48"
+											Height="48"
+											Symbol="Important" />
+								<TextBlock Margin="12 0 0 0"
+										   VerticalAlignment="Center"
+										   Text="About" />
+							</StackPanel>
+						</Controls:HamburgerButtonInfo>
+					</Controls:HamburgerMenu.SecondaryButtons>
+				</Controls:HamburgerMenu>
+			</Controls:ModalDialog.Content>
+			<Controls:ModalDialog.ModalContent>
+				<Views:Busy x:Name="BusyView" />
+			</Controls:ModalDialog.ModalContent>
+		</Controls:ModalDialog>
+    </Grid>
+</Page>
